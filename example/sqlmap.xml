@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sqlmap>
+    <select id="selectAll">
+        select id, first_name, last_name, email_verified, created_at from t
+    </select>
+    <select id="selectAllById">
+        SELECT * FROM `t` WHERE id=#{Id}
+    </select>
+    <select id="selectNamesById">
+        SELECT first_name, last_name FROM t WHERE id=#{Id}
+    </select>
+    <select id="selectNamesByIdEmail">
+        SELECT first_name, last_name, created_at FROM t WHERE id=#{Id} and email_verified=#{EmailVerified}
+    </select>
+    <select id="selectCnt">
+        SELECT COUNT(*) FROM t
+    </select>
+    <insert id="insertStmt">
+        INSERT INTO t(first_name, last_name, email_verified, created_at)
+        VALUES(#{FirstName}, #{LastName}, #{EmailVerified}, NOW())
+    </insert>
+    <update id="updateById">
+        UPDATE t SET
+        first_name=#{FirstName},
+        last_name=#{LastName},
+        email_verified=#{EmailVerified}
+        WHERE id=#{Id}
+    </update>
+    <delete id="deleteById">
+        DELETE FROM t WHERE id=#{Id}
+    </delete>
+</sqlmap>
